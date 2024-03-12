@@ -1,4 +1,5 @@
 import sqlite3
+import time
 from flask import Flask, render_template, request, url_for, flash, redirect
 from werkzeug.exceptions import abort
 
@@ -75,8 +76,16 @@ def edit(id):
 def delete(id):
     post = get_post(id)
     conn = get_db_connection()
-    conn.execute('DELETE FROM post WHERE id = ?', (id,))
-    conn.commit
+    conn.execute('DELETE FROM posts WHERE id = ?', (id,))
+    conn.commit()
     conn.close()
     flash('"{}" was succesfully deleted!'.format(post['title']))
     return redirect(url_for('index'))
+
+@app.route('/rules')
+def house_rules():
+    return render_template('rules.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
