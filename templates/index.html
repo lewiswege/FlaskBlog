@@ -15,23 +15,3 @@
         <hr>
     {% endfor %}
 {% endblock %}
-
-<!-- Your HTML template code -->
-
-{% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-        <ul class="flashes">
-            {% for category, message in messages %}
-                <li class="{{ category }}">{{ message }}</li>
-            {% endfor %}
-        </ul>
-        <script>
-            setTimeout(function() {
-                var flashes = document.querySelectorAll('.flashes li');
-                flashes.forEach(function(flash) {
-                    flash.style.display = 'none';
-                });
-            }, 2000);  // Adjust the time (in milliseconds) as needed
-        </script>
-    {% endif %}
-{% endwith %}
